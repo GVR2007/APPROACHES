@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Presentation: Conventional Water Treatment Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #0369a1; /* Oxford Blue/Cerulean */
+    --primary-light: #f0f9ff;
+    --secondary: #334155;
+    --accent: #0284c7;
+    --success: #15803d;
+    --error: #b91c1c;
+    --bg-main: #ffffff;
+    --bg-alt: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-alt);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* Navigation Sidebar */
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 280px;
+    background: #fff;
+    border-right: 1px solid var(--border);
+    padding: 40px 24px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+  .sidebar-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--primary); margin-bottom: 40px; letter-spacing: -0.02em; }
+  .sidebar-nav { list-style: none; }
+  .sidebar-nav li { margin-bottom: 12px; }
+  .sidebar-nav a { text-decoration: none; color: var(--text-muted); font-size: 0.85rem; font-weight: 500; display: block; padding: 8px 12px; border-radius: 6px; transition: 0.2s; }
+  .sidebar-nav a:hover { background: var(--primary-light); color: var(--primary); }
+  .sidebar-nav a.active { background: var(--primary); color: #fff; }
+
+  /* Main Content Area */
+  .main-content { margin-left: 280px; padding-bottom: 100px; }
+
+  /* Hero Section */
+  header.hero {
+    background: #fff;
+    padding: 100px 0 60px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 60px;
+  }
+  .report-tag { font-family: 'Fira Code', monospace; font-size: 0.75rem; color: var(--primary); text-transform: uppercase; font-weight: 600; margin-bottom: 16px; display: block; }
+  h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; color: #0f172a; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; }
+  .hero-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 800px; }
+
+  /* Stage Cards */
+  .stage-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 60px;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .stage-header { padding: 32px 40px; border-bottom: 1px solid var(--bg-alt); display: flex; justify-content: space-between; align-items: center; }
+  .stage-title { font-family: 'Outfit', sans-serif; }
+  .stage-title span { font-family: 'Fira Code', monospace; color: var(--primary); font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px; }
+  .stage-title h2 { font-size: 1.75rem; color: #0f172a; }
+  .cost-chip { background: var(--primary-light); color: var(--primary); font-weight: 700; font-size: 0.8rem; padding: 6px 14px; border-radius: 100px; border: 1px solid rgba(3, 105, 161, 0.1); }
+
+  .stage-body { padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+  /* Media Component */
+  .stage-visual { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+  .visual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+  .visual-grid img { width: 100%; height: auto; display: block; object-fit: cover; }
+  .visual-label { padding: 8px 16px; background: var(--bg-alt); font-size: 0.65rem; color: var(--text-muted); font-weight: 600; border-top: 1px solid var(--border); display: flex; justify-content: space-between; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Content Components */
+  .content-group { margin-bottom: 28px; }
+  .content-group h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 12px; }
+  .content-group p { font-size: 0.95rem; color: var(--text-main); }
+
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .pc-box { padding: 16px; border-radius: 10px; font-size: 0.85rem; }
+  .pc-box.pros { background: #f0fdf4; border: 1px solid #dcfce7; }
+  .pc-box.cons { background: #fef2f2; border: 1px solid #fee2e2; }
+  .pc-box h4 { font-size: 0.7rem; text-transform: uppercase; margin-bottom: 10px; }
+  .pc-box ul { list-style: none; }
+  .pc-box ul li { margin-bottom: 6px; padding-left: 14px; position: relative; }
+  .pc-box.pros ul li::before { content: '✓'; position: absolute; left: 0; color: var(--success); font-weight: 800; }
+  .pc-box.cons ul li::before { content: '✕'; position: absolute; left: 0; color: var(--error); font-weight: 800; }
+
+  .rationale-box { background: var(--primary-light); padding: 20px; border-radius: 10px; border-left: 4px solid var(--primary); margin-top: 20px; }
+  .rationale-box h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--primary); margin-bottom: 8px; }
+  .rationale-box p { font-size: 0.88rem; color: var(--primary); font-style: italic; }
+
+  /* Performance Data Table */
+  .performance-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.85rem; }
+  .performance-table th { text-align: left; padding: 10px; border-bottom: 2px solid var(--bg-alt); color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .performance-table td { padding: 10px; border-bottom: 1px solid var(--bg-alt); }
+  .indicator { font-weight: 800; font-family: 'Fira Code', monospace; display: inline-block; width: 24px; text-align: center; border-radius: 4px; margin-right: 8px; }
+  .ind-add { color: #15803d; background: #f0fdf4; } /* Green for Adding */
+  .ind-red { color: #b91c1c; background: #fef2f2; } /* Red for Reducing */
+  .val-text { font-weight: 700; color: var(--primary); }
+
+  /* Comparison Section */
+  .comparison-section { background: #0f172a; color: #fff; padding: 80px 40px; border-radius: 24px; margin-top: 100px; }
+  .comparison-section h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 40px; }
+  table.data-matrix { width: 100%; border-collapse: collapse; text-align: left; }
+  table.data-matrix th { padding: 16px; border-bottom: 2px solid #334155; font-size: 0.7rem; text-transform: uppercase; opacity: 0.7; }
+  table.data-matrix td { padding: 16px; border-bottom: 1px solid #1e293b; font-size: 0.9rem; }
+  .status-high { color: #4ade80; font-weight: 700; }
+  .status-med { color: #facc15; font-weight: 700; }
+
+  /* Summary Section */
+  .summary-section { margin-top: 80px; }
+  .eval-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }
+  .eval-item { background: #fff; padding: 40px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-card); }
+  .eval-item h3 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: #0f172a; margin-bottom: 20px; }
+
+  /* Toggle Button */
+  .view-toggle {
+    position: fixed;
+    top: 20px; right: 40px;
+    background: #fff;
+    padding: 6px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 4px;
+    z-index: 2000;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  .toggle-btn {
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+  }
+  .toggle-btn.active {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(3, 105, 161, 0.3);
+  }
+
+  /* View Hiding */
+  .view-section { display: none; }
+  .view-section.active { display: block; }
+
+  /* SDG Cards Glow */
+  .sdg-card-ro { background: #E5243B !important; box-shadow: 0 10px 15px -3px rgba(229, 36, 59, 0.3) !important; }
+  .sdg-card-nf { background: #F99D26 !important; box-shadow: 0 10px 15px -3px rgba(249, 157, 38, 0.3) !important; }
+
+  /* Responsiveness */
+  @media (max-width: 1024px) {
+    .sidebar { display: none; }
+    .main-content { margin-left: 0; }
+    .stage-body { grid-template-columns: 1fr; }
+    .view-toggle { right: 20px; top: 10px; }
+  }
+
+  @media print {
+    .sidebar { display: none; }
+    .main-content { margin-left: 0; }
+    .stage-card { break-inside: avoid; page-break-inside: avoid; }
+    .view-toggle { display: none; }
+  }
+</style>
+<script>
+  function switchView(view) {
+    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    document.getElementById(view + '-view').classList.add('active');
+    
+    document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('btn-' + view).classList.add('active');
+
+    // Update sidebar if needed
+    const conventionalItems = document.querySelectorAll('.nav-conv');
+    const roItems = document.querySelectorAll('.nav-ro');
+    const nfItems = document.querySelectorAll('.nav-nf');
+    
+    // Reset all
+    conventionalItems.forEach(el => el.style.display = 'none');
+    roItems.forEach(el => el.style.display = 'none');
+    nfItems.forEach(el => el.style.display = 'none');
+
+    if (view === 'ro') {
+      roItems.forEach(el => el.style.display = 'block');
+    } else if (view === 'nf') {
+      nfItems.forEach(el => el.style.display = 'block');
+    } else {
+      conventionalItems.forEach(el => el.style.display = 'block');
+    }
+    
+    window.scrollTo(0, 0);
+  }
+</script>
+</head>
+<body>
+
+<div class="view-toggle">
+  <button id="btn-conv" class="toggle-btn active" onclick="switchView('conv')">Conventional</button>
+  <button id="btn-ro" class="toggle-btn" onclick="switchView('ro')">RO + Blending</button>
+  <button id="btn-nf" class="toggle-btn" onclick="switchView('nf')">Nanofiltration</button>
+</div>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">HYDROSYSTEMS INDIA</div>
+  <ul class="sidebar-nav">
+    <li><a href="#overview" class="active">Overview & Strategy</a></li>
+    
+    <!-- Conventional Nav -->
+    <li class="nav-conv"><a href="#stage1">01 Screening</a></li>
+    <li class="nav-conv"><a href="#stage2">02 Sedimentation</a></li>
+    <li class="nav-conv"><a href="#stage3">03 Diffused Aeration</a></li>
+    <li class="nav-conv"><a href="#stage4">04 Bio-Sand Filter</a></li>
+    <li class="nav-conv"><a href="#stage5">05 Activated Carbon</a></li>
+    <li class="nav-conv"><a href="#stage6">06 Ultrafiltration</a></li>
+    <li class="nav-conv"><a href="#stage7">07 Chlorination</a></li>
+    
+    <!-- RO Nav -->
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage1">01 Sedimentation</a></li>
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage2">02 Aeration</a></li>
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage3">03 Bio-Sand Filter</a></li>
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage4">04 Activated Carbon</a></li>
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage5">05 Ultrafiltration</a></li>
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage6">06 RO Path</a></li>
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage6b">06b Bypass Path</a></li>
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage7">07 Blending Unit</a></li>
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage8">08 Chlorination</a></li>
+    <li class="nav-ro" style="display:none;"><a href="#ro-stage9">09 Storage (2000L)</a></li>
+
+    <!-- NF Nav -->
+    <li class="nav-nf" style="display:none;"><a href="#nf-stage1">01 Screening</a></li>
+    <li class="nav-nf" style="display:none;"><a href="#nf-stage2">02 Sedimentation</a></li>
+    <li class="nav-nf" style="display:none;"><a href="#nf-stage3">03 Aeration</a></li>
+    <li class="nav-nf" style="display:none;"><a href="#nf-stage4">04 Bio-Sand Filter</a></li>
+    <li class="nav-nf" style="display:none;"><a href="#nf-stage5">05 Activated Carbon</a></li>
+    <li class="nav-nf" style="display:none;"><a href="#nf-stage6">06 Ultrafiltration</a></li>
+    <li class="nav-nf" style="display:none;"><a href="#nf-stage7">07 Nanofiltration</a></li>
+    <li class="nav-nf" style="display:none;"><a href="#nf-stage8">08 Chlorination</a></li>
+    <li class="nav-nf" style="display:none;"><a href="#nf-stage9">09 Storage (2000L)</a></li>
+
+    <li><a href="#comparison">System Matrix</a></li>
+    <li><a href="#evaluation">Final Evaluation</a></li>
+    <li><a href="#summary">Performance Analysis</a></li>
+    <li><a href="#sdg">SDG Alignment</a></li>
+  </ul>
+</aside>
+
+<div class="main-content">
+  <!-- CONVENTIONAL VIEW -->
+  <div id="conv-view" class="view-section active">
+    <header class="hero" id="overview">
+      <div class="container">
+        <span class="report-tag">Academic Technical Report · Version 2026.04</span>
+        <h1>Conventional Water <br>Treatment Evaluation</h1>
+        <p class="hero-sub">A formal lecture-style breakdown of a seven-stage purification system (Non-RO), optimized for sustainable pond water treatment with high mineral retention and zero industrial wastage.</p>
+      </div>
+    </header>
+
+  <div class="container">
+
+    <!-- MIND MAP SECTION -->
+    <section class="mind-map-section" id="mindmap" style="margin-bottom: 80px;">
+      <div class="stage-card">
+        <div class="stage-header" style="background: var(--primary-light);">
+          <div class="stage-title"><span>STRATEGIC OVERVIEW</span><h2>System Conceptual Mind Map</h2></div>
+        </div>
+        <div class="stage-body" style="display: block; padding: 20px;">
+          <div class="stage-visual" style="border: none;">
+            <img src="imp1.png" alt="System Mind Map" style="width: 100%; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-card);">
+            <div class="visual-label" style="justify-content: center; font-size: 0.7rem; margin-top: 10px; border: none; background: transparent;">
+              <span>FIG 1.0: INTEGRATED SYSTEM LOGIC & CROSS-FUNCTIONAL DEPENDENCIES</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- STAGE 1 -->
+    <div class="stage-card" id="stage1">
+      <div class="stage-header">
+        <div class="stage-title"><span>INFRASTRUCTURE COMPONENT 01</span><h2>Screening</h2></div>
+        <div class="cost-chip">Capex: ₹500 – ₹2,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="screening_stage_1775328440752.png" alt="Concept">
+            <img src="screening_village_realistic_1775329220706.png" alt="Real-world">
+          </div>
+          <div class="visual-label">
+            <span>Conceptual Schematic</span>
+            <span>Village Implementation</span>
+          </div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology & Operation</h3>
+            <p>Coarse physical barrier (mesh or bars) at the inlet that removes large debris like leaves, twigs, plastics, and floating solids before water enters the sedimentation tank. It is the first defensive line preventing clogging of downstream units.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Completely passive</li><li>Prevents damage</li><li>Low maintenance</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Size restricted</li><li>Requires manual cleaning</li></ul></div>
+          </div>
+          <table class="performance-table">
+            <thead><tr><th>Parameter</th><th>Shift</th><th>Reduced By (Abs)</th><th>% Reduction</th></tr></thead>
+            <tbody>
+              <tr><td>Turbidity</td><td><span class="indicator ind-red">↓</span></td><td class="val-text">Slight</td><td class="val-text">10 – 20%</td></tr>
+              <tr><td>Bacteria</td><td><span class="indicator ind-red">↓</span></td><td class="val-text">Slight</td><td class="val-text">5 – 10%</td></tr>
+            </tbody>
+          </table>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Essential first step for raw pond water with high debris/turbidity. It protects the 1000 L sedimentation tank and keeps the whole system efficient at minimal cost.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage-card" id="stage2">
+      <div class="stage-header">
+        <div class="stage-title"><span>INFRASTRUCTURE COMPONENT 02</span><h2>Sedimentation Tank (1000L)</h2></div>
+        <div class="cost-chip">Capex: ₹5,000 – ₹15,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="sedimentation_stage_1775328457899.png" alt="Concept">
+            <img src="sedimentation_village_realistic_1775329237294.png" alt="Real-world">
+          </div>
+          <div class="visual-label">
+            <span>Conceptual Schematic</span>
+            <span>Village Implementation</span>
+          </div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology & Operation</h3>
+            <p>Gravity-based settling where water is held still, allowing heavier suspended particles, silt, and some organics to settle at the bottom as sludge. Performance data indicates bulk removal of suspended load.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Simple concrete/HDPE</li><li>High silt removal</li><li>Passive settling</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>High retention time</li><li>Sludge buildup</li></ul></div>
+          </div>
+          <table class="performance-table">
+            <thead><tr><th>Parameter</th><th>Value After</th><th>Reduced By (Abs)</th><th>% Reduction</th></tr></thead>
+            <tbody>
+              <tr><td>Turbidity</td><td>Medium</td><td class="val-text">↓ 50 – 70%</td><td class="val-text">50 – 70%</td></tr>
+              <tr><td>Iron</td><td>0.27 mg/L</td><td class="val-text">↓ 0.03 mg/L</td><td class="val-text">5 – 10%</td></tr>
+            </tbody>
+          </table>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Perfect low-cost way to handle high initial turbidity in pond water. Reduces burden on biological and membrane stages, aligning with the "low energy, no wastage" goal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage-card" id="stage3">
+      <div class="stage-header">
+        <div class="stage-title"><span>INFRASTRUCTURE COMPONENT 03</span><h2>Diffused Aeration Unit</h2></div>
+        <div class="cost-chip">Capex: ₹8,000 – ₹25,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="aeration_stage_1775328475653.png" alt="Concept">
+            <img src="aeration_village_realistic_1775329257992.png" alt="Real-world">
+          </div>
+          <div class="visual-label">
+            <span>Conceptual Schematic</span>
+            <span>Village Implementation</span>
+          </div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology & Operation</h3>
+            <p>Air is bubbled through diffusers at the bottom, increasing dissolved oxygen (DO). This oxidises iron (makes it filterable), strips volatile gases/odours, and reduces ammonia through volatilisation or enhanced biological activity.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Natural oxidation</li><li>Enhanced DO</li><li>Odor control</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Electric load</li><li>Equipment noise</li></ul></div>
+          </div>
+          <table class="performance-table">
+            <thead><tr><th>Parameter</th><th>Value After</th><th>Shift (Abs)</th><th>% Reduction</th></tr></thead>
+            <tbody>
+              <tr><td>Total Iron</td><td>0.18 mg/L</td><td class="val-text">↓ 0.12 mg/L</td><td class="val-text">20 – 40%</td></tr>
+              <tr><td>Ammonia</td><td>0.45 mg/L</td><td class="val-text">↓ 0.68 mg/L</td><td class="val-text">30 – 60%</td></tr>
+              <tr><td>Odor</td><td>Reduced</td><td class="val-text">-</td><td class="val-text">40 – 60%</td></tr>
+              <tr><td>D. Oxygen</td><td>Increased</td><td class="val-text">↑ 50 – 100%</td><td class="val-text">-</td></tr>
+            </tbody>
+          </table>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Critical for pond water issues (low DO, odour, iron, ammonia). It prepares water for biological filtration without chemicals — sustainable and fits the mineral-retention philosophy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage-card" id="stage4">
+      <div class="stage-header">
+        <div class="stage-title"><span>INFRASTRUCTURE COMPONENT 04</span><h2>Sand / Bio-Sand Filter</h2></div>
+        <div class="cost-chip">Capex: ₹3,000 – ₹10,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="biosand_stage_1775328495021.png" alt="Concept">
+            <img src="biosand_village_realistic_1775329280184.png" alt="Real-world">
+          </div>
+          <div class="visual-label">
+            <span>Conceptual Schematic</span>
+            <span>Village Implementation</span>
+          </div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology & Operation</h3>
+            <p>Water percolates through layers of sand/gravel. Physical straining removes particles; in bio-sand version, a biological "schmutzdecke" layer (biofilm) on top biologically degrades organics, ammonia, and pathogens.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Natural Pathogen Red.</li><li>Dual filtration</li><li>Low media cost</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Slow flow rate</li><li>2-4 wk maturation</li></ul></div>
+          </div>
+          <table class="performance-table">
+            <thead><tr><th>Parameter</th><th>Value After</th><th>Reduced By (Abs)</th><th>% Reduction</th></tr></thead>
+            <tbody>
+              <tr><td>Iron (Total)</td><td>0.09 mg/L</td><td class="val-text">↓ 0.21 mg/L</td><td class="val-text">40 – 70%</td></tr>
+              <tr><td>Turbidity</td><td>Low</td><td class="val-text">↓ 80 – 95%</td><td class="val-text">80 – 95%</td></tr>
+              <tr><td>Bacteria</td><td>Reduced</td><td class="val-text">↓ 60 – 90%</td><td class="val-text">60 – 90%</td></tr>
+              <tr><td>Ammonia</td><td>0.36 mg/L</td><td class="val-text">↓ 0.23 mg/L</td><td class="val-text">10 – 20%</td></tr>
+            </tbody>
+          </table>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Combines physical + biological treatment — ideal after aeration. Low cost, no wastage, and supports 100% bacteria removal when followed by UF/chlorination.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage-card" id="stage5">
+      <div class="stage-header">
+        <div class="stage-title"><span>INFRASTRUCTURE COMPONENT 05</span><h2>Activated Carbon (GAC)</h2></div>
+        <div class="cost-chip">Capex: ₹4,000 – ₹12,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="carbon_stage_1775328511789.png" alt="Concept">
+            <img src="carbon_village_realistic_1775329300455.png" alt="Real-world">
+          </div>
+          <div class="visual-label">
+            <span>Conceptual Schematic</span>
+            <span>Village Implementation</span>
+          </div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology & Operation</h3>
+            <p>Water flows through a bed of granular activated carbon that adsorbs (sticks to surface) organic compounds, chlorine, colour, taste and odour compounds. High surface area media for technical polishing.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Total Odor Removal</li><li>Aesthetic polishing</li><li>Simple install</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Adsorption limit</li><li>Periodic replacement</li></ul></div>
+          </div>
+          <table class="performance-table">
+            <thead><tr><th>Parameter</th><th>Value After</th><th>Reduced By (Abs)</th><th>% Reduction</th></tr></thead>
+            <tbody>
+              <tr><td>TDS</td><td>700 mg/L</td><td class="val-text">↓ 37 mg/L</td><td class="val-text">5 – 10%</td></tr>
+              <tr><td>Odor</td><td>Almost Nil</td><td class="val-text">-</td><td class="val-text">80 – 100%</td></tr>
+              <tr><td>Iron</td><td>0.135 mg/L</td><td class="val-text">↓ 5 – 10%</td><td class="val-text">Add. 5 – 10%</td></tr>
+            </tbody>
+          </table>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Polishes the water after biological stages — removes remaining odour/organics for pleasant taste. Essential because pond water often has earthy/musty smells.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage-card" id="stage6">
+      <div class="stage-header">
+        <div class="stage-title"><span>INFRASTRUCTURE COMPONENT 06</span><h2>Ultrafiltration (UF)</h2></div>
+        <div class="cost-chip">Capex: ₹10,000 – ₹30,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="uf_stage_1775328530830.png" alt="Concept">
+            <img src="uf_village_realistic_1775329321087.png" alt="Real-world">
+          </div>
+          <div class="visual-label">
+            <span>Conceptual Schematic</span>
+            <span>Village Implementation</span>
+          </div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology & Operation</h3>
+            <p>Pressure-driven membrane (pore size ~0.01–0.1 micron) that physically sieves out bacteria, viruses, colloids, and fine particles while allowing dissolved minerals to pass. Gold standard for bio-safety without mineral removal.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>100% Bio-barrier</li><li>Mineral retention</li><li>Low energy usage</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Fouling risk</li><li>Backwash needed</li></ul></div>
+          </div>
+          <table class="performance-table">
+            <thead><tr><th>Parameter</th><th>Value After</th><th>Reduced By (Abs)</th><th>% Extraction</th></tr></thead>
+            <tbody>
+              <tr><td>Turbidity</td><td>Clear</td><td class="val-text">~100% removal</td><td class="val-text">~100%</td></tr>
+              <tr><td>Bacteria</td><td>Nil</td><td class="val-text">~100% removal</td><td class="val-text">~100%</td></tr>
+            </tbody>
+          </table>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Provides robust physical disinfection without removing minerals or creating wastage — perfect balance for this system. Achieves crystal-clear water and ensures complete bacterial safety.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 7 -->
+    <div class="stage-card" id="stage7">
+      <div class="stage-header">
+        <div class="stage-title"><span>INFRASTRUCTURE COMPONENT 07</span><h2>Chlorination Unit</h2></div>
+        <div class="cost-chip">Capex: ₹2,000 – ₹8,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="chlorination_stage_1775328550764.png" alt="Concept">
+            <img src="chlorination_village_realistic_1775329338625.png" alt="Real-world">
+          </div>
+          <div class="visual-label">
+            <span>Conceptual Schematic</span>
+            <span>Village Implementation</span>
+          </div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology & Operation</h3>
+            <p>Dosing of chlorine (bleach or tablets) as final disinfectant to kill any remaining or re-contaminating microbes in storage/distribution. Residual chlorine provides an ongoing safety barrier.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Residual Protection</li><li>Proven Reliability</li><li>Extremely Low Cost</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Potential Taste</li><li>Chemical Handling</li></ul></div>
+          </div>
+          <table class="performance-table">
+            <thead><tr><th>Parameter</th><th>Value After</th><th>Change (Abs)</th><th>% Delta</th></tr></thead>
+            <tbody>
+              <tr><td>Bacteria</td><td>Nil</td><td class="val-text">100% killed</td><td class="val-text">100%</td></tr>
+              <tr><td>pH</td><td>7.5 – 7.8</td><td class="val-text">↓ 0.5 units</td><td class="val-text">2 – 5%</td></tr>
+              <tr><td>Chloride</td><td>100 mg/L</td><td class="val-text">↑ 6 mg/L</td><td class="val-text">+2 – 5%</td></tr>
+            </tbody>
+          </table>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Final safety net ensuring "Nil" bacteria in final water. Low-cost way to achieve WHO-level microbiological safety without energy-heavy alternatives like UV.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARISON MATRIX -->
+    <section class="comparison-section" id="comparison">
+      <h2>Complete Infrastructure Data Matrix</h2>
+      <table class="data-matrix">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Mechanism</th>
+            <th>Key Removal</th>
+            <th>Efficacy</th>
+            <th>Annual OPEX</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Screening</td><td>Physical Mesh</td><td>Macro-debris</td><td class="status-high">98%</td><td>Zero</td></tr>
+          <tr><td>Sedimentation</td><td>Gravity</td><td>Silt/Organics</td><td class="status-med">65%</td><td>Low</td></tr>
+          <tr><td>Aeration</td><td>Oxidation</td><td>Iron/Gases</td><td class="status-high">75%</td><td>₹1,200</td></tr>
+          <tr><td>Bio-Sand</td><td>Biofilm</td><td>Pathogens</td><td class="status-high">85%</td><td>Zero</td></tr>
+          <tr><td>GAC</td><td>Adsorption</td><td>Odor/Organics</td><td class="status-high">95%</td><td>₹3,000</td></tr>
+          <tr><td>UF</td><td>Membrane</td><td>Bacteria/Viruses</td><td class="status-high">100%</td><td>₹2,000</td></tr>
+          <tr><td>Chlorination</td><td>Chemical</td><td>Residual Bio</td><td class="status-high">100%</td><td>₹1,000</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- EVALUATION -->
+    <section class="summary-section" id="evaluation">
+      <div class="eval-grid">
+        <div class="eval-item">
+          <h3>Overall Evaluator's Verdict</h3>
+          <p>The proposed infrastructure represents a <strong>well-balanced, sustainable conventional treatment train</strong>. It achieves high-accuracy physical and biological purification while avoiding the specific externalities of RO (high energy, mineral stripping, and high wastewater brine).</p>
+          <div style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="padding: 15px; background: #f0fdf4; border-radius: 10px;">
+              <strong style="color:var(--success); font-size: 0.8rem; text-transform: uppercase;">Primary Strengths</strong>
+              <ul style="font-size: 0.85rem; margin-top: 10px;">
+                <li>Mineral-retaining design</li>
+                <li>Zero-wastage recovery</li>
+                <li>Low maintenance CAPEX</li>
+              </ul>
+            </div>
+            <div style="padding: 15px; background: #fef2f2; border-radius: 10px;">
+              <strong style="color:var(--error); font-size: 0.8rem; text-transform: uppercase;">Optimization Areas</strong>
+              <ul style="font-size: 0.85rem; margin-top: 10px;">
+                <li>Scheduled GAC renewal</li>
+                <li>UF Fouling Monitoring</li>
+                <li>Periodic Desilting</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="eval-item" style="background: var(--bg-alt);">
+          <h3>Contextual Fit</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Ideal for pond water treatment in the Tamil Nadu region where decentralised, mineral-rich, and low-energy solutions are prioritized over complex industrial osmosis systems.</p>
+          <div style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px;">
+            <p style="font-weight: 700; font-family: 'Outfit';">Project Status: <span style="color:var(--success)">Validated</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERALL SYSTEM PERFORMANCE SUMMARY -->
+    <section class="final-assessment-section" id="summary" style="margin-top: 100px;">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <span class="report-tag">Cumulative Efficacy Benchmark</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: #0f172a;">Overall System Performance</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 15px auto;">Benchmarking Raw Intake vs. Final Distribution (Direct System Impact Analysis).</p>
+      </div>
+
+      <div class="stage-card" style="padding: 0;">
+        <table class="data-matrix" style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left;">
+          <thead>
+            <tr style="background: #0f172a; color: #fff;">
+              <th style="padding: 20px; border-bottom: 2px solid #334155;">Parameter</th>
+              <th style="padding: 20px; border-bottom: 2px solid #334155;">Raw Value</th>
+              <th style="padding: 20px; border-bottom: 2px solid #334155;">Final Value</th>
+              <th style="padding: 20px; border-bottom: 2px solid #334155;">Reduced By (Abs)</th>
+              <th style="padding: 20px; border-bottom: 2px solid #334155;">Overall % Reduction</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-main);">
+            <tr><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 700;">TDS</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">737 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">650 – 700 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--error);">37 – 87 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 800;">5 – 12%</td></tr>
+            <tr><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 700;">Iron</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">0.3 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">0.1 – 0.2 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--error);">0.1 – 0.2 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 800; color: var(--success);">50 – 67%</td></tr>
+            <tr><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 700;">Ammonia</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">1.13 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">0.3 – 0.6 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--error);">0.53 – 0.83 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 800; color: var(--success);">47 – 73%</td></tr>
+            <tr><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 700;">Nitrate</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">13.9 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">12 – 13 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--error);">0.9 – 1.9 mg/L</td><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 800;">6 – 14%</td></tr>
+            <tr><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 700;">Turbidity</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">High</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">Very Low</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">-</td><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 800; color: var(--success);">95 – 100%</td></tr>
+            <tr><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 700;">Bacteria</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">Present</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">Nil</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">-</td><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 800; color: var(--success);">100%</td></tr>
+            <tr><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 700;">Odor</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">Present</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">Acceptable</td><td style="padding: 16px; border-bottom: 1px solid var(--border);">-</td><td style="padding: 16px; border-bottom: 1px solid var(--border); font-weight: 800; color: var(--success);">90 – 100%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SDG ALIGNMENT SECTION -->
+
+    <!-- SDG ALIGNMENT SECTION -->
+
+    <!-- SDG ALIGNMENT SECTION -->
+    <section class="sdg-section" id="sdg" style="margin-top: 100px;">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <span class="report-tag">United Nations Alignment</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: #0f172a;">Targeted SDG Contribution</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 15px auto;">Advancing global sustainability goals through decentralized, low-resource water technology.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+        <!-- SDG 6 -->
+        <div style="background: #26bde2; color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(38, 189, 226, 0.3);">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">06</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 6: Clean Water & Sanitation</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.5;">Directly provides safe and affordable drinking water through high-efficacy physical and membrane barrier technologies.</p>
+        </div>
+
+        <!-- SDG 3 -->
+        <div style="background: #4c9f38; color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(76, 159, 56, 0.3);">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">03</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 3: Good Health & Well-being</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.5;">Mitigates water-borne diseases (Cholera, Typhoid, E.coli) via redundant disinfection stages (UF + Chlorination).</p>
+        </div>
+
+        <!-- SDG 11 -->
+        <div style="background: #f99d26; color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(249, 157, 38, 0.3);">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">11</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 11: Sustainable Communities</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.5;">Reduces energy reliance and technical complexity, making clean water infrastructure resilient for rural contexts.</p>
+        </div>
+
+        <!-- SDG 12 -->
+        <div style="background: #bf8b2e; color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(191, 139, 46, 0.3);">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">12</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 12: Responsible Consumption</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.5;">Eliminates discharge of industrial brine (common in RO) and preserves natural mineral content in potable water supply.</p>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- container -->
+</div><!-- conv-view -->
+
+<!-- RO + BLENDING VIEW -->
+<div id="ro-view" class="view-section">
+  <header class="hero" id="ro-overview">
+    <div class="container">
+      <span class="report-tag">Advanced Technical Report · Version 2026.04</span>
+      <h1>Reverse Osmosis with <br>Blending System</h1>
+      <p class="hero-sub">An advanced purification approach incorporating high-pressure membrane technology and controlled bypass blending to achieve superior TDS reduction while maintaining essential mineral balance.</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- RO MIND MAP SECTION -->
+    <section class="mind-map-section" id="ro-mindmap" style="margin-bottom: 80px;">
+      <div class="stage-card">
+        <div class="stage-header" style="background: var(--primary-light);">
+          <div class="stage-title"><span>STRATEGIC OVERVIEW</span><h2>System Conceptual Mind Map</h2></div>
+        </div>
+        <div class="stage-body" style="display: block; padding: 20px;">
+          <div class="stage-visual" style="border: none;">
+            <img src="Reverse osmosis.png" alt="RO System Mind Map" style="width: 100%; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-card);">
+            <div class="visual-label" style="justify-content: center; font-size: 0.7rem; margin-top: 10px; border: none; background: transparent;">
+              <span>FIG 2.0: RO + BLENDING INTEGRATED SYSTEM LOGIC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- RO STAGE 1 -->
+    <div class="stage-card" id="ro-stage1">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 01</span><h2>Sedimentation Tank (1000 L)</h2></div>
+        <div class="cost-chip">Capex: ₹5,000 – ₹15,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="sedimentation_stage_1775328457899.png" alt="Concept">
+            <img src="sedimentation_village_realistic_1775329237294.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology</h3>
+            <p>Gravity settling tank where heavy suspended particles, silt, and some organics settle as sludge. Same pre-treatment as conventional system (50–70% turbidity reduction).</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Passive / No Energy</li><li>Protects RO Memb.</li><li>Low Operating Cost</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Slow Process</li><li>Sludge Mgmt</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Essential low-cost first step for high-turbidity pond water. Protects expensive RO membranes from fouling and extends their life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RO STAGE 2 -->
+    <div class="stage-card" id="ro-stage2">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 02</span><h2>Aeration Unit (Diffused)</h2></div>
+        <div class="cost-chip">Capex: ₹8,000 – ₹25,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="aeration_stage_1775328475653.png" alt="Concept">
+            <img src="aeration_village_realistic_1775329257992.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology</h3>
+            <p>Air bubbled through diffusers to oxidise iron, strip odours, and reduce ammonia. Prepared water for downstream biological and RO stages.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Natural Oxidation</li><li>Improves RO Perf.</li><li>Removes Odors</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Requires Blower</li><li>Noise Pollution</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Critical for pond water (iron, low DO, ammonia). Prevents RO membrane fouling and improves overall efficiency.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RO STAGE 3 -->
+    <div class="stage-card" id="ro-stage3">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 03</span><h2>Bio-Sand Filter</h2></div>
+        <div class="cost-chip">Capex: ₹3,000 – ₹10,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="biosand_stage_1775328495021.png" alt="Concept">
+            <img src="biosand_village_realistic_1775329280184.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology</h3>
+            <p>Layered sand/gravel with biological layer for physical straining + biological degradation of organics and pathogens.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Robust Turbidity Red.</li><li>Local Materials</li><li>Low Media Cost</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Slow Flow Rate</li><li>Maturation Time</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Acts as robust pre-treatment before UF and RO, reducing organic load and protecting sensitive membranes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RO STAGE 4 -->
+    <div class="stage-card" id="ro-stage4">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 04</span><h2>Activated Carbon (GAC)</h2></div>
+        <div class="cost-chip">Capex: ₹4,000 – ₹12,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="carbon_stage_1775328511789.png" alt="Concept">
+            <img src="carbon_village_realistic_1775329300455.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology</h3>
+            <p>Adsorbs organic compounds, chlorine, and taste/odour molecules via high-surface area granular carbon.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Excellent Taste Improvement</li><li>Organic Removal</li><li>Protects RO Memb.</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Saturates Over Time</li><li>Media Replacement</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Removes organics and chlorine-demanding compounds before RO, extending membrane life and improving final taste.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RO STAGE 5 -->
+    <div class="stage-card" id="ro-stage5">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 05</span><h2>Ultrafiltration (UF)</h2></div>
+        <div class="cost-chip">Capex: ₹10,000 – ₹30,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="uf_stage_1775328530830.png" alt="Concept">
+            <img src="uf_village_realistic_1775329321087.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology & Split Flow</h3>
+            <p>0.01–0.1 micron physical barrier that removes 100% of bacteria and viruses. <strong>Crucially, after this stage, the flow is split:</strong> one part proceeds to the RO Membrane (RO Path) while the other bypasses it (Bypass Path) for later blending.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Final Bio-Barrier</li><li>Enables Bypass Flow</li><li>High Recovery</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Fouling Risk</li><li>Backwash needed</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Ensures that both the water being treated by RO and the bypass water are microbiologically sterile before they split.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPLIT FLOW INDICATOR -->
+    <div style="text-align: center; margin: -30px 0 30px; position: relative; z-index: 10;">
+      <div style="display: inline-flex; gap: 40px; align-items: center; background: #fff; padding: 15px 30px; border-radius: 50px; border: 2px dashed var(--primary); box-shadow: var(--shadow-card);">
+        <div style="text-align: center;"><span style="display: block; font-size: 0.7rem; font-weight: 800; color: var(--primary);">PATH A</span><strong style="color:var(--text-main)">RO Membrane</strong></div>
+        <div style="font-size: 1.5rem; color: var(--primary);">← Split Flow →</div>
+        <div style="text-align: center;"><span style="display: block; font-size: 0.7rem; font-weight: 800; color: var(--primary);">PATH B</span><strong style="color:var(--text-main)">Bypass (Filtered)</strong></div>
+      </div>
+    </div>
+
+    <!-- RO STAGE 6 -->
+    <div class="stage-card" id="ro-stage6">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 06</span><h2>Path A: RO Membrane</h2></div>
+        <div class="cost-chip">Capex: ₹25,000 – ₹60,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="ro_membrane_concept_1775332902562.png" alt="Concept">
+            <img src="ro_village_real_1775332923859.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: RO Path Performance</h3>
+            <p>This path processes a portion of the UF water through a high-pressure semi-permeable membrane. It removes 90–95% of dissolved salts, heavy metals, and persistent contaminants like Fluoride and Nitrate.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Superior Purity</li><li>Removes Nitrates</li><li>Eliminates Salinity</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Energy Intensive</li><li>Brine Waste Flow</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>The RO Path is the key to tackling dissolved solids that filters cannot catch. It produces ultra-clean water for final blending.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RO STAGE 6B BYPASS -->
+    <div class="stage-card" id="ro-stage6b">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 06B</span><h2>Path B: Bypass (Filtered)</h2></div>
+        <div class="cost-chip">Capex: ₹1,000 – ₹3,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="uf_stage_1775328530830.png" alt="Concept">
+            <img src="uf_village_realistic_1775329321087.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Bypass Stream</h3>
+            <p>A portion of the Ultrafiltered (UF) water is diverted directly to the blending unit. Since it hasn't passed through the RO membrane, it retains all the natural minerals from the original pond water, while remaining microbiologically safe.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Mineral Preservation</li><li>Zero Energy Cost</li><li>Zero Water Wastage</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>High TDS (Untreated salts)</li><li>Only Path 1 partial</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>The Bypass Path ensures that the final water isn't "sterile and dead." It provides the essential salts that give water its neutral, healthy profile.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RO STAGE 7 -->
+    <div class="stage-card" id="ro-stage7">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 07</span><h2>Mixing & Blending Unit</h2></div>
+        <div class="cost-chip">Capex: ₹6,000 – ₹15,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="blending_tank_concept_1775332942674.png" alt="Concept">
+            <img src="blending_village_real_1775332961040.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Re-Convergence</h3>
+            <p>This stage merges the ultra-low TDS <strong>RO Water</strong> with the mineral-rich <strong>Bypass Filtered Water</strong>. By adjusting the mixing ratio, the system achieves a target TDS of 300–450 mg/L.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Restores Minerals</li><li>Perfect Taste Profile</li><li>Operational Flex.</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Flow Calibration</li><li>Ratio Management</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Blending is the secret to "Balanced Mineral Water." It ensures high-purity without stripping essential salts like calcium and magnesium.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RO STAGE 8 -->
+    <div class="stage-card" id="ro-stage8">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 08</span><h2>Chlorination Unit</h2></div>
+        <div class="cost-chip">Capex: ₹2,000 – ₹8,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="chlorination_stage_1775328550764.png" alt="Concept">
+            <img src="chlorination_village_realistic_1775329338625.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology</h3>
+            <p>Final disinfection with chlorine dosing for residual protection. Ensures microbiological safety during storage.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Low Cost</li><li>Residual Security</li><li>100% Pathogen Kill</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Chemical Handling</li><li>Slight Chlorine Taste</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Ensures microbiological safety in storage and distribution after the blending process.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RO STAGE 9 -->
+    <div class="stage-card" id="ro-stage9">
+      <div class="stage-header">
+        <div class="stage-title"><span>RO INFRASTRUCTURE 09</span><h2>Storage Tank (2000L)</h2></div>
+        <div class="cost-chip">Capex: ₹8,000 – ₹20,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="storage_tank_concept_1775332982187.png" alt="Concept">
+            <img src="storage_village_real_1775333002317.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology</h3>
+            <p>Holds blended and chlorinated water for supply, providing a buffer for peak demand.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Buffer Capacity</li><li>Settled Chlorine</li><li>Passive Storage</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Cleaning Req.</li><li>Contamination Risk</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Evaluator's Rationale</h4>
+            <p>Practical necessity for community/household distribution systems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERFORMANCE TABLE RO -->
+    <section class="final-assessment-section" id="ro-summary" style="margin-top: 100px;">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <span class="report-tag">Detailed Water Quality Metrics</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: #0f172a;">Stage-by-Stage Performance</h2>
+        <p style="color: var(--text-muted); max-width: 800px; margin: 15px auto;">Tracking the reduction of contaminants from Raw Intake through to the Final Treated & Blended output.</p>
+      </div>
+
+      <div class="stage-card" style="padding: 0; overflow-x: auto;">
+        <table class="data-matrix" style="width: 100%; min-width: 1200px; border-collapse: collapse; font-size: 0.8rem; text-align: left;">
+          <thead>
+            <tr style="background: #0f172a; color: #fff;">
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Stage</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">pH</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">TDS (mg/L)</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Iron (mg/L)</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Fluoride</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Chloride</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Nitrate</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Ammonia</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Turbidity</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Bacteria</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-main);">
+            <tr style="background: var(--bg-alt); font-weight: 700;">
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Raw Water Intake</td>
+              <td>8.0</td><td>737</td><td>0.3</td><td>0.5</td><td>99</td><td>13.9</td><td>1.13</td><td>High</td><td>Present</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border); font-weight:600;">Sedimentation</td>
+              <td>-</td><td>-</td><td>↓ 5-10%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>↓ 50-70%</td><td>↓ 10-20%</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border); font-weight:600;">Aeration</td>
+              <td>↑ 5-10%</td><td>-</td><td>↓ 20-40%</td><td>-</td><td>-</td><td>-</td><td>↓ 30-60%</td><td>Slight ↓</td><td>Slight ↓</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border); font-weight:600;">Sand / Bio Filter</td>
+              <td>-</td><td>-</td><td>↓ 40-70%</td><td>-</td><td>-</td><td>-</td><td>↓ 10-20%</td><td>↓ 80-95%</td><td>↓ 60-90%</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border); font-weight:600;">Activated Carbon</td>
+              <td>-</td><td>↓ 5-10%</td><td>Slight ↓</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border); font-weight:600;">Ultrafiltration (UF)</td>
+              <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>~100% Red.</td><td>~100% Red.</td>
+            </tr>
+            <tr style="color: var(--primary);">
+              <td style="padding: 12px; border-bottom: 1px solid var(--border); font-weight:600;">RO Stream (Path A)</td>
+              <td>-</td><td>↓ 90-95%</td><td>~100%</td><td>↓ 80-90%</td><td>~90%</td><td>↓ 80-90%</td><td>~100%</td><td>Complete</td><td>Nil</td>
+            </tr>
+            <tr style="background: #f0f9ff; font-weight: 700;">
+              <td style="padding: 12px; border-bottom: 1px solid var(--border); color:var(--success);">Final Blended Water</td>
+              <td>7.0 - 7.5</td><td>300 - 450</td><td>0.05 - 0.1</td><td>0.3 - 0.5</td><td>50 - 80</td><td>5 - 10</td><td>0.1 - 0.3</td><td>Very Low</td><td>Nil</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SYSTEM COMPARISON MATRIX -->
+    <section class="comparison-section" id="ro-comparison" style="margin-bottom: 100px;">
+      <h2>System Comparison Overview</h2>
+      <table class="data-matrix">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Conventional (No RO)</th>
+            <th>RO + Blending</th>
+            <th>Winner / Remark</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Final TDS</td><td>650 – 700 mg/L</td><td class="status-high">300 – 450 mg/L</td><td>RO + Blending (Better Taste)</td></tr>
+          <tr><td>Ammonia Red.</td><td>47 – 73%</td><td class="status-high">60 – 80%</td><td>RO + Blending</td></tr>
+          <tr><td>Waste Water</td><td>Zero</td><td style="color:var(--error)">Moderate (Reject)</td><td>Conventional</td></tr>
+          <tr><td>Energy Use</td><td>Low</td><td style="color:var(--error)">Higher</td><td>Conventional</td></tr>
+          <tr><td>Cost (Capex)</td><td>Low</td><td class="status-med">Moderate</td><td>Conventional</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- RO SDG ALIGNMENT -->
+    <section class="sdg-section" id="ro-sdg" style="margin-bottom: 100px;">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <span class="report-tag">UN Sustainability Goals</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: #0f172a;">Targeted SDG Contribution</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 15px auto;">High-performance engineering for global water security.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+        <div style="background: #26bde2; color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(38, 189, 226, 0.3);">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">06</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 6: Clean Water</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9;">Delivers high-purity water to regions with high salinity or chemical contamination.</p>
+        </div>
+        <div style="background: #4c9f38; color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(76, 159, 56, 0.3);">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">03</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 3: Well-being</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9;">Removes dissolved pollutants like Nitrates and Fluorides that impact long-term health.</p>
+        </div>
+        <div class="sdg-card-ro" style="color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden;">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">09</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 9: Innovation</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9;">Leverages advanced membrane science to solve local pond-water challenges effectively.</p>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- container -->
+</div><!-- ro-view -->
+
+<!-- NANOFILTRATION (NF) VIEW -->
+<div id="nf-view" class="view-section">
+  <header class="hero" id="nf-overview">
+    <div class="container">
+      <span class="report-tag">Nanofiltration Series · Version 2026.04</span>
+      <h1>Nanofiltration (NF) <br>System Infrastructure</h1>
+      <p class="hero-sub">The state-of-the-art middle-ground: Optimized for superior hardness removal and nitrate reduction with significantly better mineral retention than RO.</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- NF MIND MAP SECTION -->
+    <section class="mind-map-section" id="nf-mindmap" style="margin-bottom: 80px;">
+      <div class="stage-card">
+        <div class="stage-header" style="background: var(--primary-light);">
+          <div class="stage-title"><span>STRATEGIC OVERVIEW</span><h2>System Conceptual Mind Map</h2></div>
+        </div>
+        <div class="stage-body" style="display: block; padding: 20px;">
+          <div class="stage-visual" style="border: none;">
+            <img src="nano filtration.png" alt="NF System Mind Map" style="width: 100%; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-card);">
+            <div class="visual-label" style="justify-content: center; font-size: 0.7rem; margin-top: 10px; border: none; background: transparent;">
+              <span>FIG 3.0: NF INTEGRATED FLOW & MINERAL BALANCE LOGIC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- NF STAGE 1 -->
+    <div class="stage-card" id="nf-stage1">
+      <div class="stage-header">
+        <div class="stage-title"><span>NF INFRASTRUCTURE 01</span><h2>Screening</h2></div>
+        <div class="cost-chip">Capex: ₹500 – ₹2,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="screening_stage_1775328440752.png" alt="Concept">
+            <img src="screening_village_realistic_1775329220706.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Coarse Straining</h3>
+            <p>Coarse mesh or bar screen at the inlet removes large debris (leaves, twigs, plastics) from raw pond water before it enters the sedimentation tank. It is an essential passive shield for downstream units.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Simple and passive</li><li>Prevents clogging</li><li>Zero operating cost</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Visible debris only</li><li>Requires manual cleaning</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Why Selected</h4>
+            <p>Essential first protective step for high-debris pond water. Keeps the entire system (especially the NF membrane) running smoothly at almost zero cost.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NF STAGE 2 -->
+    <div class="stage-card" id="nf-stage2">
+      <div class="stage-header">
+        <div class="stage-title"><span>NF INFRASTRUCTURE 02</span><h2>Sedimentation Tank (1000 L)</h2></div>
+        <div class="cost-chip">Capex: ₹5,000 – ₹15,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="sedimentation_stage_1775328457899.png" alt="Concept">
+            <img src="sedimentation_village_realistic_1775329237294.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Gravity-Based Settling</h3>
+            <p>Gravity-based settling tank allowing heavy suspended particles and silt to settle as sludge (Turbidity ↓50–70%). Completely passive pre-treatment.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>No energy or chemicals</li><li>Reduces filter load</li><li>Simple construction</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Slow process time</li><li>Regular desilting req.</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Why Selected</h4>
+            <p>Low-cost, effective pre-treatment for turbid pond water. Protects the expensive NF membrane from fouling and improves overall plant uptime.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NF STAGE 3 -->
+    <div class="stage-card" id="nf-stage3">
+      <div class="stage-header">
+        <div class="stage-title"><span>NF INFRASTRUCTURE 03</span><h2>Diffused Aeration Unit</h2></div>
+        <div class="cost-chip">Capex: ₹8,000 – ₹25,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="aeration_stage_1775328475653.png" alt="Concept">
+            <img src="aeration_village_realistic_1775329257992.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Technical Oxidation</h3>
+            <p>Air is diffused into water to increase dissolved oxygen, oxidise iron, and reduce persistent ammonia and odour. Oxidation turns soluble iron into filterable solids.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Natural oxidation</li><li>Removes odours</li><li>Improves taste</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Requires blower power</li><li>Minor equipment noise</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Why Selected</h4>
+            <p>Pond water often contains high iron, ammonia, and odour compounds. Aeration is critical to prepare the water for high-performance membrane treatment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NF STAGE 4 -->
+    <div class="stage-card" id="nf-stage4">
+      <div class="stage-header">
+        <div class="stage-title"><span>NF INFRASTRUCTURE 04</span><h2>Sand / Bio-Sand Filter</h2></div>
+        <div class="cost-chip">Capex: ₹3,000 – ₹10,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="biosand_stage_1775328495021.png" alt="Concept">
+            <img src="biosand_village_realistic_1775329280184.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Bio-Filter Barrier</h3>
+            <p>Multi-layer sand filter with a biological layer on top for physical straining + natural biodegradation. Achieves 80–95% turbidity and 60–90% bacteria reduction.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Nature-based solution</li><li>Low media cost</li><li>Pathogen reduction</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Slower flow rate</li><li>Cleaning downtime</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Why Selected</h4>
+            <p>A strong pre-treatment step that significantly reduces organic load, protecting the NF and UF membranes from bio-fouling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NF STAGE 5 -->
+    <div class="stage-card" id="nf-stage5">
+      <div class="stage-header">
+        <div class="stage-title"><span>NF INFRASTRUCTURE 05</span><h2>Activated Carbon Filter (GAC)</h2></div>
+        <div class="cost-chip">Capex: ₹4,000 – ₹12,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="carbon_stage_1775328511789.png" alt="Concept">
+            <img src="carbon_village_realistic_1775329300455.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Adsorption Polishing</h3>
+            <p>Granular activated carbon adsorbs organic compounds, chlorine, colour, taste and odour. Dramatically improves the aesthetic quality of pond-derived water.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Crystal clear clarity</li><li>Total odour removal</li><li>Simple operation</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Media saturates</li><li>Periodic replacement</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Why Selected</h4>
+            <p>Removes organics and chlorine-demanding substances before the membrane stages, significantly extending NF filter life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NF STAGE 6 -->
+    <div class="stage-card" id="nf-stage6">
+      <div class="stage-header">
+        <div class="stage-title"><span>NF INFRASTRUCTURE 06</span><h2>Ultrafiltration (UF)</h2></div>
+        <div class="cost-chip">Capex: ₹10,000 – ₹30,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="uf_stage_1775328530830.png" alt="Concept">
+            <img src="uf_village_realistic_1775329321087.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Secondary Barrier</h3>
+            <p>Fine membrane (0.01–0.1 micron) removes 100% of bacteria and viruses while allowing healthy dissolved minerals to pass. Acts as the final pre-filter for NF.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Complete bio-shield</li><li>Low energy usage</li><li>Long life pre-filter</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Fouling sensitive</li><li>Backwash needed</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Why Selected</h4>
+            <p>Delivers high-purity feed water to the NF membrane, ensuring its longevity and maintaining 100% microbiological safety.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NF STAGE 7 -->
+    <div class="stage-card" id="nf-stage7">
+      <div class="stage-header">
+        <div class="stage-title"><span>NF INFRASTRUCTURE 07</span><h2>Nanofiltration (NF) Membrane</h2></div>
+        <div class="cost-chip">Capex: ₹35,000 – ₹80,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="nf_membrane_concept_1775334374224.png" alt="Concept">
+            <img src="nf_village_real_1775334399235.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Partial Desalination</h3>
+            <p>A pressure-driven membrane that selectively removes hardness, monovalent salts, and nitrates while allowing bone-benefitting minerals to pass through.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Low Energy vs RO</li><li>Less water wastage</li><li>Balanced Minerals</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Produces reject flow</li><li>Partial TDS reduction</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Why Selected</h4>
+            <p>The core innovation of this system — it provides effective desalination and hardness removal with a much smaller environmental footprint than full RO.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NF STAGE 8 -->
+    <div class="stage-card" id="nf-stage8">
+      <div class="stage-header">
+        <div class="stage-title"><span>NF INFRASTRUCTURE 08</span><h2>Chlorination Unit</h2></div>
+        <div class="cost-chip">Capex: ₹2,000 – ₹8,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="chlorination_stage_1775328550764.png" alt="Concept">
+            <img src="chlorination_village_realistic_1775329338625.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Disinfection</h3>
+            <p>Final chemical dosing to kill residual microbes and provide an ongoing barrier against re-contamination during distribution.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Extremely low cost</li><li>Reliable protection</li><li>Residual safety</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Chemical dosing care</li><li>Mild residual taste</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Why Selected</h4>
+            <p>Ensures 100% microbiological safety from the system output to the final community distribution faucet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NF STAGE 9 -->
+    <div class="stage-card" id="nf-stage9">
+      <div class="stage-header">
+        <div class="stage-title"><span>NF INFRASTRUCTURE 09</span><h2>Storage Tank (2000 L)</h2></div>
+        <div class="cost-chip">Capex: ₹8,000 – ₹20,000</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-visual">
+          <div class="visual-grid">
+            <img src="storage_tank_concept_1775332982187.png" alt="Concept">
+            <img src="storage_village_real_1775333002317.png" alt="Real-world">
+          </div>
+          <div class="visual-label"><span>Conceptual Schematic</span><span>Village Implementation</span></div>
+        </div>
+        <div class="stage-info">
+          <div class="content-group">
+            <h3>Methodology: Buffering</h3>
+            <p>Final storage of treated water for immediate village use. Facilitates peak demand buffering and chlorination contact time.</p>
+          </div>
+          <div class="pros-cons">
+            <div class="pc-box pros"><h4>Pros</h4><ul><li>Contact stability</li><li>Demand management</li><li>Passive storage</li></ul></div>
+            <div class="pc-box cons"><h4>Cons</h4><ul><li>Cleaning schedule</li></ul></div>
+          </div>
+          <div class="rationale-box">
+            <h4>Why Selected</h4>
+            <p>Required for practical village water security and efficient management of production cycles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERFORMANCE ANALYTICS NF -->
+    <section class="final-assessment-section" style="margin-top: 100px;">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <span class="report-tag">Technical Efficiency Analytics</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: #0f172a;">Changes at Each Stage</h2>
+        <p style="color: var(--text-muted); max-width: 800px; margin: 15px auto;">Tracking value evolution and percentage reduction across the NF treatment train.</p>
+      </div>
+
+      <div class="stage-card" style="padding: 0; overflow-x: auto;">
+        <table class="data-matrix" style="width: 100%; min-width: 1000px; border-collapse: collapse; font-size: 0.8rem; text-align: left;">
+          <thead>
+            <tr style="background: #0f172a; color: #fff;">
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Stage</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Parameter</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Value After Stage</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">Reduced By (Abs)</th>
+              <th style="padding: 12px; border-bottom: 2px solid #334155;">% Reduction</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-main);">
+            <tr><td>01 Screening</td><td>Turbidity</td><td>Slight ↓</td><td>-</td><td>10 – 20%</td></tr>
+            <tr style="background: var(--bg-alt);"><td>02 Sedimentation</td><td>Turbidity</td><td>Medium</td><td>↓ 50 – 70%</td><td>50 – 70%</td></tr>
+            <tr><td>03 Aeration</td><td>Ammonia</td><td>0.45 – 0.79 mg/L</td><td>↓ 0.34 – 0.68</td><td class="status-med">30 – 60%</td></tr>
+            <tr style="background: var(--bg-alt);"><td>04 Bio-Sand</td><td>Bacteria</td><td>Reduced</td><td>↓ 60 – 90%</td><td class="status-high">60 – 90%</td></tr>
+            <tr><td>05 GAC</td><td>Odor</td><td>Almost Nil</td><td>-</td><td class="status-high">80 – 100%</td></tr>
+            <tr style="background: var(--bg-alt);"><td>06 UF</td><td>Bacteria</td><td>Almost Nil</td><td>~100% removal</td><td class="status-high">100%</td></tr>
+            <tr style="color:var(--primary); font-weight: 700;"><td>07 Nanofiltration</td><td>TDS</td><td>220 – 500 mg/L</td><td>↓ 200 – 480</td><td class="status-med">32 – 70%</td></tr>
+            <tr><td>08 Chlorination</td><td>Bacteria</td><td>Nil</td><td>100% killed</td><td class="status-high">100%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FINAL SUMMARY TABLE NF -->
+    <section class="comparison-section" id="nf-summary" style="margin-top: 100px;">
+      <h2>Final Summary: NF Quality Dashboard</h2>
+      <table class="data-matrix">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Raw Water</th>
+            <th>Final Water (NF)</th>
+            <th>Overall % Reduction</th>
+            <th>Remark</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>TDS</td><td>737 mg/L</td><td>220 – 500 mg/L</td><td>32 – 70%</td><td class="status-high">Balanced Minerals</td></tr>
+          <tr><td>Hardness</td><td>High</td><td>Significantly reduced</td><td class="status-high">70 – 90%</td><td class="status-high">System Strength</td></tr>
+          <tr><td>Iron</td><td>0.3 mg/L</td><td>0.05 – 0.1 mg/L</td><td>67 – 83%</td><td>Excellent</td></tr>
+          <tr><td>Ammonia</td><td>1.13 mg/L</td><td>0.2 – 0.4 mg/L</td><td>65 – 82%</td><td>Good</td></tr>
+          <tr><td>Nitrate</td><td>13.9 mg/L</td><td>5 – 10 mg/L</td><td>50 – 80%</td><td class="status-high">High Performance</td></tr>
+          <tr><td>Bacteria</td><td>Present</td><td>Nil</td><td class="status-high">100%</td><td>Clinical Safety</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- NF SDG ALIGNMENT -->
+    <section class="sdg-section" id="nf-sdg" style="margin-top: 100px;">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <span class="report-tag">UN Sustainability Goals</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: #0f172a;">Targeted SDG Contribution</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 15px auto;">Delivering sustainable, energy-efficient village infrastructure.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+        <div style="background: #26bde2; color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(38, 189, 226, 0.3);">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">06</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 6: Clean Water</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9;">Balanced mineral retention for health-conscious rural drinking water plants.</p>
+        </div>
+        <div style="background: #4c9f38; color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(76, 159, 56, 0.3);">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">03</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 3: Well-being</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9;">Eliminates hardness-related issues while providing traces of bone-essential salts.</p>
+        </div>
+        <div class="sdg-card-nf" style="color: #fff; padding: 30px; border-radius: 16px; position: relative; overflow: hidden;">
+          <div style="font-size: 3.5rem; font-weight: 900; opacity: 0.2; position: absolute; right: -5px; bottom: -15px;">12</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; margin-bottom: 12px;">SDG 12: Consumption</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9;">High water recovery rates and low energy demand support responsible village usage.</p>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- container -->
+</div><!-- nf-view -->
+
+<div style="height: 10px;"></div><!-- spacer -->
+
+
+</div><!-- main-content -->
+
+<footer>
+  <div class="container" style="margin-left: 280px; text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border);">
+    &copy; 2026 Water Systems Engineering India | Technical Documentation Bureau
+  </div>
+</footer>
+
+<script>
+  // Simple active navigation highlighting
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const sections = document.querySelectorAll('.stage-card[id], section[id]');
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (pageYOffset >= sectionTop - 150) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    document.querySelectorAll('.sidebar-nav a').forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href').includes(current)) {
+        a.classList.add('active');
+      }
+    });
+  });
+</script>
+</body>
+</html>
